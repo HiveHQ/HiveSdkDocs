@@ -122,5 +122,5 @@ HIVE_SDK(
 ```
 
 
-This call will authenticate a user given an email address and data about them.
+This call will authenticate a user given an email address and data about them and call the success callback provided with enriched data regarding that user.
 
