@@ -19,6 +19,6 @@ You can now see the docs at http://localhost:4567. Whoa! That was fast!
 
 Edit `index.html.md` to modify docs
 
-`bundle exec middleman build --clean` to build docs
+Push changes to remote then ssh into blog server. Pull the changes and run:
 
-If you'd prefer to use Docker, instructions are available [in the wiki](https://github.com/lord/slate/wiki/Docker).
+`bundle exec middleman build --clean` to build docs. That's it, nginx will serve the updated docs.
