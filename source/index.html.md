@@ -5,7 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
 
 toc_footers:
-  - <a href='https://www.hive.co/'>Powered by Hive</a>
+  - <a href='https://www.hive.co/home'>Powered by Hive</a>
 
 # includes:
 #   - errors
@@ -133,7 +133,7 @@ HIVE_SDK(
 
 This call will take the provided user data, and use it to authenticate the current user and add them to your brand's contact list in Hive.
 
-The <code>email</code> field is the only required field, although passing along as much data as possible is reccomended. For instance, including <code>firstName</code> will help to generate a gender for your contacts in Hive. <code>location</code> should be a string with as much location granularity as possible (we'll take care of geocoding, etc. on our own).
+The <code>email</code> field is the only required field, although passing along as much data as possible is recommended. For instance, including <code>firstName</code> will help to generate a gender for your contacts in Hive. <code>location</code> should be a string with as much location granularity as possible (we'll take care of geocoding, etc. on our own).
 
 After authentication/signup is successful, the 'success' callback will be called with information about the user. If something goes wrong, the 'error' callback function will be called with details regarding what went wrong.
 
