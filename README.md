@@ -11,6 +11,7 @@ rvm alias create default 2.4.1
 rvm use 2.4.1
 git clone https://github.com/HiveHQ/HiveSdkDocs.git
 cd HiveSdkDocs
+gem install bundler
 bundle install
 bundle exec middleman server
 ```
