@@ -209,6 +209,7 @@ html, body {
   transition-property: background;
   transition-timing-function: linear;
   transition-duration: 130ms;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.2);
 }
 
 // button to show navigation on mobile devices
@@ -448,7 +449,7 @@ html, body {
   }
 
   code {
-    background-color: rgba(0,0,0,0.05);
+    background-color: rgba(0,0,0,0.1);
     padding: 3px;
     border-radius: 3px;
     @extend %break-words;
@@ -467,6 +468,9 @@ html, body {
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
     line-height: 1.6;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.1);
 
     &.warning {
       background-color: $aside-warning-bg;
