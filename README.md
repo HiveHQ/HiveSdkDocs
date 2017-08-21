@@ -10,7 +10,7 @@ rvm install ruby-2.4.1
 rvm alias create default 2.4.1
 rvm use 2.4.1
 git clone https://github.com/HiveHQ/HiveSdkDocs.git
-cd slate
+cd HiveSdkDocs
 bundle install
 bundle exec middleman server
 ```
