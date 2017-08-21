@@ -9,7 +9,7 @@ curl -sSL https://get.rvm.io | bash -s stable
 rvm install ruby-2.4.1
 rvm alias create default 2.4.1
 rvm use 2.4.1
-git clone https://github.com/HiveHQ/slate.git
+git clone https://github.com/HiveHQ/HiveSdkDocs.git
 cd slate
 bundle install
 bundle exec middleman server
