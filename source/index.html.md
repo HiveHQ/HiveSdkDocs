@@ -36,7 +36,7 @@ HIVE_SDK('init', YOUR_BRAND_HIVE_ID, function(data){  // Initialization success 
 ```js
 {
   user: {
-    id: 1,
+    id: 1,  // the user's id in Hive, useful for identifying users if saved within your application
     email: 'm@hive.co',
     first_name: 'Martin',
     last_name: 'Gingras',
@@ -45,7 +45,7 @@ HIVE_SDK('init', YOUR_BRAND_HIVE_ID, function(data){  // Initialization success 
 }
 ```
 
-You must initialize the Hive SDK on your website before calling any of the SDK's events (such as <code>fbSignup</code>). Events fired before the first <code>init</code> call will be discarded, and any events fired afterwards (even during initialization) will be handled as soon as initialization is complete.
+You must initialize the Hive SDK on your website before calling any of the SDK's events (such as <code>fbSignup</code>). Events fired before a call to <code>init</code> will be discarded, while any events fired afterwards (even during initialization) will be handled as soon as initialization is complete.
 
 <aside class='notice'>
 You must replace <code>YOUR_BRAND_HIVE_ID</code> with your brand's id in Hive.
