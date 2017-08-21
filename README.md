@@ -22,4 +22,8 @@ Edit `index.html.md` to modify docs
 
 Push changes to remote then ssh into blog server. Pull the changes and run:
 
-`bundle exec middleman build --clean` to build docs. That's it, nginx will serve the updated docs.
+```sh
+cd HiveSdkDocs
+bundle exec middleman build --clean
+```
+That's it, nginx will serve the updated docs.
