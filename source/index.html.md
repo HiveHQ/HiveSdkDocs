@@ -37,9 +37,9 @@ HIVE_SDK('init', YOUR_BRAND_HIVE_ID, function(data){  // Initialization success 
 {
   user: {
     id: 1,  // the user's id in Hive, useful for identifying users if saved within your application
-    email: 'm@hive.co',
-    first_name: 'Martin',
-    last_name: 'Gingras',
+    email: 'patrick@hive.co',
+    first_name: 'Patrick',
+    last_name: 'Hannigan',
     img: 'https://static-hive-images-ticketlabsinc1.netdna-ssl.com/facebook/c_fill,g_faces,h_150,q_30,w_150/502428349.jpg'
   }
 }
@@ -48,14 +48,14 @@ HIVE_SDK('init', YOUR_BRAND_HIVE_ID, function(data){  // Initialization success 
 You must initialize the Hive SDK on your website before calling any of the SDK's events (such as <code>fbSignup</code>). Events fired before a call to <code>init</code> will be discarded, while any events fired afterwards (even during initialization) will be handled as soon as initialization is complete.
 
 <aside class='notice'>
-You must replace <code>YOUR_BRAND_HIVE_ID</code> with your brand's id in Hive.
+  You must replace <code>YOUR_BRAND_HIVE_ID</code> with your brand's id in Hive.
 </aside>
 
 Make sure that you're initializing the SDK on a domain (or subdomain) that's been whitelisted for your brand id. If you are not sure that your domain has been whitelisted for your brand, please reach out to your account manager.
 
 The callback argument in the <code>init</code> call will be executed once the SDK sucessfully initializes. If the current user is authenticated with Hive and your brand, the callback will be passed an object containing a <code>user</code> field including information about the currently authenticated user.
 
-# Authentication/Signup
+# Add to Contact List (Authentication/Signup)
 
 Making a call to any of the Hive SDK's "signup" events will take care of authenticating the user and adding them to your brand's contact list in Hive. After a user is authenticated, any calls to the SDK's <code>init</code> event will pass that user's data into the init success callback.
 
@@ -84,9 +84,9 @@ HIVE_SDK(
 {
   user: {
     id: 1,  // the user's id in Hive, useful for identifying users if saved within your application
-    email: 'm@hive.co',
-    first_name: 'Martin',
-    last_name: 'Gingras',
+    email: 'patrick@hive.co',
+    first_name: 'Patrick',
+    last_name: 'Hannigan',
     img: 'https://static-hive-images-ticketlabsinc1.netdna-ssl.com/facebook/c_fill,g_faces,h_150,q_30,w_150/502428349.jpg'
   }
 }
@@ -98,7 +98,7 @@ After authentication/signup is successful, the 'success' callback will be called
 
 
 <aside class='notice'>
-Note: you should try to only call <code>fbSignup</code> immediately following a user interacting with your page (i.e. clicking a link, button, or other element). This will help to avoid browsers mistaking Facebook's login dialog for a popup that would otherwise be blocked.
+  Note: you should try to only call <code>fbSignup</code> immediately following a user interacting with your page (i.e. clicking a link, button, or other element). This will help to avoid browsers mistaking Facebook's login dialog for a popup that would otherwise be blocked.
 </aside>
 
 
@@ -110,9 +110,9 @@ Note: you should try to only call <code>fbSignup</code> immediately following a 
 HIVE_SDK(
   'emailSignup',
   {
-    email: 'm@hive.co',
-    firstName: 'Martin',
-    lastName: 'Gingras',
+    email: 'patrick@hive.co',
+    firstName: 'Patrick',
+    lastName: 'Hannigan',
     location: 'Toronto, Ontario, Canada'
   },
   function(data){  // Success Callback
@@ -132,9 +132,9 @@ HIVE_SDK(
 {
   user: {
     id: 1,  // the user's id in Hive, useful for identifying users if saved within your application
-    email: 'm@hive.co',
-    first_name: 'Martin',
-    last_name: 'Gingras',
+    email: 'patrick@hive.co',
+    first_name: 'Patrick',
+    last_name: 'Hannigan',
     img: 'https://static-hive-images-ticketlabsinc1.netdna-ssl.com/facebook/c_fill,g_faces,h_150,q_30,w_150/502428349.jpg'
   }
 }
@@ -147,6 +147,33 @@ The <code>email</code> field is the only required field, although passing along 
 After authentication/signup is successful, the 'success' callback will be called with information about the user. If something goes wrong, the 'error' callback function will be called with details regarding what went wrong.
 
 <aside class='notice'>
-Note: in some rare cases, users signing up with an email address already associated with a Hive admin account will be required to log in using their Hive password. We'll handle redirecting those users to their Hive login page, making sure they're authenticated, and then redirect them back to your web property.
+  Note: in some rare cases, users signing up with an email address already associated with a Hive admin account will be required to log in using their Hive password. We'll handle redirecting those users to their Hive login page, making sure they're authenticated, and then redirect them back to your website.
+</aside>
+
+# Add to Segment
+
+After a user has been authenticated (either returned in the response of an <code>init</code> call, or by a subsequent <code>emailSignup</code> or <code>fbSignup</code> call), you can add them to a static segment within Hive.
+
+## Add to Static Segment
+
+> To add a user to a segment, call the following code once a user is authenticated:
+
+```javascript
+HIVE_SDK(
+  'addToSegment',
+  'VIP Contacts Segment',  // any segment name you choose
+  function(){},  // Success Callback
+  function(data){}  // Error Callback
+    // data contains error information
+    console.log(data)
+  }
+);
+
+```
+
+This call will add the currently authenticated user to a static segment in Hive with the provided name (case sensitive, exactly as provided). If a segment does not exist for the name you provided, one will be created.
+
+<aside class='notice'>
+  Note: users must be authenticated and a member of your contact list before they are able to be added to a segment.
 </aside>
 
