@@ -152,11 +152,11 @@ After authentication/signup is successful, the 'success' callback will be called
 
 # Add to Segment
 
-After a user has been authenticated (either returned in the response of an <code>init</code> call, or by a subsequent <code>emailSignup</code> or <code>fbSignup</code> call), you can add them to a static segment within Hive.
+After a user has been authenticated (either returned in the response of an <code>init</code> call, or by a subsequent <code>emailSignup</code> or <code>fbSignup</code> call), you can add them to a segment within Hive.
 
 ## Add to Static Segment
 
-> To add a user to a segment, call the following code once a user is authenticated:
+> To add a user to a segment, call the following code:
 
 ```javascript
 HIVE_SDK(
@@ -171,9 +171,9 @@ HIVE_SDK(
 
 ```
 
-This call will add the currently authenticated user to a static segment in Hive with the provided name (case sensitive, exactly as provided). If a segment does not exist for the name you provided, one will be created.
+This call will add the currently authenticated user to a static segment in Hive that matches the name you provide. If a segment does not exist for the name you provided, one will be created.
 
 <aside class='notice'>
-  Note: users must be authenticated and a member of your contact list before they are able to be added to a segment.
+  Note: users must be authenticated and a member of your contact list before you can add them to a segment.
 </aside>
 
