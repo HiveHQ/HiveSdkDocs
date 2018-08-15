@@ -17,15 +17,11 @@ search: true
 
 The Hive Javascript SDK allows you to update your contact list in Hive from your own web properties - based on how users interact with your website or signup form.
 
-<aside class='notice'>
-  Your website's domain must be whitelisted in our system before you can run the Hive SDK on it. To get whitelist a new domain, please email <a href="mailto:hello@hive.co">hello@hive.co</a>.
-</aside>
-
 # Getting Started
 
 ## Whitelist Your Domain
 
-Your website's domain **must** be whitelisted in our system before you can run the Hive SDK on it. To get whitelist a new domain, please email <a href="mailto:hello@hive.co">hello@hive.co</a>. Domains used for production and development sites can be whitelisted at the same time.
+Your website's domain **must** be whitelisted in our system (i.e. approved) before you can run the Hive SDK on it. To whitelist a new domain, please email <a href="mailto:hello@hive.co">hello@hive.co</a>. Domains used for production and development sites can be whitelisted at the same time.
 
 ## SDK Initialization
 
