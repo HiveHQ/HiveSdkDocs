@@ -61,11 +61,11 @@ Make sure that you're initializing the SDK on a domain (or subdomain) that's bee
 
 The callback argument in the <code>init</code> call will be executed once the SDK sucessfully initializes. If the current user is authenticated with Hive and your brand, the callback will be passed an object containing a <code>user</code> field including information about the currently authenticated user.
 
-# Add to Contact List (Authentication/Signup)
+# Add User to Contact List
 
 Making a call to any of the Hive SDK's "signup" events will take care of authenticating the user and adding them to your brand's contact list in Hive. After a user is authenticated, any calls to the SDK's <code>init</code> event will pass that user's data into the init success callback.
 
-## Sign up via Facebook Connect
+## Add via Facebook Connect
 
 > To launch the FB signup flow, call the following code immediately following a user interacting with your page (i.e. clicking a link, button, or other element):
 
@@ -98,19 +98,18 @@ HIVE_SDK(
 }
 ```
 
-This call will prompt the user to sign up via Facebook, and then add the user to your contact list in Hive.
+This call will prompt the user to connect up via Facebook, and then add the user to your contact list in Hive.
 
-After authentication/signup is successful, the 'success' callback will be called with information about the user. If something goes wrong, the 'error' callback function will be called with details regarding what went wrong.
-
+After the signup is successful, the 'success' callback will be called with information about the user. If something goes wrong, the 'error' callback function will be called with details regarding what went wrong.
 
 <aside class='notice'>
   You should only call <code>fbSignup</code> immediately following a user interacting with your page (i.e. clicking a link, button, or other element). This will help to avoid browsers mistaking Facebook's login dialog for a popup that would otherwise be blocked.
 </aside>
 
 
-## Sign up via email
+## Add via email address
 
-> To sign up a user via an email address, call the following code:
+> To add a user via an email address, call the following code:
 
 ```javascript
 HIVE_SDK(
@@ -150,13 +149,13 @@ This call will take the provided user data, and use it to authenticate the curre
 
 The <code>email</code> field is the only required field, although passing along as much data as possible is recommended. For instance, including <code>firstName</code> will help to generate a gender for your contacts in Hive. <code>location</code> should be a string with as much location granularity as possible (we'll take care of geocoding, etc. on our own).
 
-After authentication/signup is successful, the 'success' callback will be called with information about the user. If something goes wrong, the 'error' callback function will be called with details regarding what went wrong.
+After the signup is successful, the 'success' callback will be called with information about the user. If something goes wrong, the 'error' callback function will be called with details regarding what went wrong.
 
 <aside class='notice'>
   In some rare cases, users signing up with an email address already associated with a Hive admin account will be required to log in using their Hive password. We'll handle redirecting those users to their Hive login page, making sure they're authenticated, and then redirect them back to your website.
 </aside>
 
-# Add to Segment
+# Add Contact to Segment
 
 After a user has been authenticated (either returned in the response of an <code>init</code> call, or by a subsequent <code>emailSignup</code> or <code>fbSignup</code> call), you can add them to a segment within Hive.
 
