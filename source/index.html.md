@@ -15,7 +15,13 @@ search: true
 
 # Introduction
 
-The Hive SDK allows you to power signup and authentication on your own web properties and store additional data about your users using Hive's backend.
+The Hive SDK allows you to interact with your contacts and contact list in Hive from your own web properties using Javascript.
+
+You can add users from your website or signup form to your contact list in Hive (i.e. power signup/authentication) and add your website's users to segments in Hive (i.e. store additional data about your users as they interact with your website).
+
+<aside class='notice'>
+  Your website's domain must be whitelisted in our system before you can run the Hive SDK on it. To get whitelist a new domain, please email <a href="mailto:hello@hive.co">hello@hive.co</a>.
+</aside>
 
 # SDK Initialization
 
@@ -31,7 +37,7 @@ HIVE_SDK('init', YOUR_BRAND_HIVE_ID, function(data){  // Initialization success 
 
 ```
 
-> Make sure to replace `YOUR_BRAND_HIVE_ID` with your brand's id. The above command will call the callback function, containing the current user's information if the current user is already authenticated with Hive and your brand:
+> The above command will call the callback function, containing the current user's information if the current user is already authenticated with Hive and your brand:
 
 ```js
 {
@@ -48,7 +54,7 @@ HIVE_SDK('init', YOUR_BRAND_HIVE_ID, function(data){  // Initialization success 
 You must initialize the Hive SDK on your website before calling any of the SDK's events (such as <code>fbSignup</code>). Events fired before a call to <code>init</code> will be discarded, while any events fired afterwards (even during initialization) will be handled as soon as initialization is complete.
 
 <aside class='notice'>
-  You must replace <code>YOUR_BRAND_HIVE_ID</code> with your brand's id in Hive.
+  Don't forget to replace <code>YOUR_BRAND_HIVE_ID</code> with your brand's id in Hive. For help finding your brand's id, please email <a href="mailto:hello@hive.co">hello@hive.co</a>.
 </aside>
 
 Make sure that you're initializing the SDK on a domain (or subdomain) that's been whitelisted for your brand id. If you are not sure that your domain has been whitelisted for your brand, please reach out to your account manager.
@@ -98,7 +104,7 @@ After authentication/signup is successful, the 'success' callback will be called
 
 
 <aside class='notice'>
-  Note: you should try to only call <code>fbSignup</code> immediately following a user interacting with your page (i.e. clicking a link, button, or other element). This will help to avoid browsers mistaking Facebook's login dialog for a popup that would otherwise be blocked.
+  You should only call <code>fbSignup</code> immediately following a user interacting with your page (i.e. clicking a link, button, or other element). This will help to avoid browsers mistaking Facebook's login dialog for a popup that would otherwise be blocked.
 </aside>
 
 
@@ -147,7 +153,7 @@ The <code>email</code> field is the only required field, although passing along 
 After authentication/signup is successful, the 'success' callback will be called with information about the user. If something goes wrong, the 'error' callback function will be called with details regarding what went wrong.
 
 <aside class='notice'>
-  Note: in some rare cases, users signing up with an email address already associated with a Hive admin account will be required to log in using their Hive password. We'll handle redirecting those users to their Hive login page, making sure they're authenticated, and then redirect them back to your website.
+  In some rare cases, users signing up with an email address already associated with a Hive admin account will be required to log in using their Hive password. We'll handle redirecting those users to their Hive login page, making sure they're authenticated, and then redirect them back to your website.
 </aside>
 
 # Add to Segment
@@ -174,6 +180,6 @@ HIVE_SDK(
 This call will add the currently authenticated user to a static segment in Hive that matches the name you provide. If a segment does not exist for the name you provided, one will be created.
 
 <aside class='notice'>
-  Note: users must be authenticated and a member of your contact list before you can add them to a segment.
+  Users must be authenticated and a member of your contact list before you can add them to a segment.
 </aside>
 
