@@ -15,15 +15,19 @@ search: true
 
 # Introduction
 
-The Hive SDK allows you to interact with your contacts and contact list in Hive from your own web properties using Javascript.
-
-You can add users from your website or signup form to your contact list in Hive (i.e. power signup/authentication) and add your website's users to segments in Hive (i.e. store additional data about your users as they interact with your website).
+The Hive Javascript SDK allows you to update your contact list in Hive from your own web properties - based on how users interact with your website or signup form.
 
 <aside class='notice'>
   Your website's domain must be whitelisted in our system before you can run the Hive SDK on it. To get whitelist a new domain, please email <a href="mailto:hello@hive.co">hello@hive.co</a>.
 </aside>
 
-# SDK Initialization
+# Getting Started
+
+## Whitelist Your Domain
+
+Your website's domain **must** be whitelisted in our system before you can run the Hive SDK on it. To get whitelist a new domain, please email <a href="mailto:hello@hive.co">hello@hive.co</a>. Domains used for production and development sites can be whitelisted at the same time.
+
+## SDK Initialization
 
 > To initialize the Hive SDK on your site, use the following code:
 
