@@ -107,7 +107,7 @@ After the signup is successful, the 'success' callback will be called with infor
 </aside>
 
 
-## Add via email address
+## Add via Email Address
 
 > To add a user via an email address, call the following code:
 
