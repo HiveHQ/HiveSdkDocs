@@ -44,8 +44,8 @@ HIVE_SDK('init', YOUR_BRAND_HIVE_ID, function(data){  // Initialization success 
   user: {
     id: 1,  // the user's id in Hive, useful for identifying users if saved within your application
     email: 'patrick@hive.co',
-    first_name: 'Patrick',
-    last_name: 'Hannigan',
+    firstName: 'Patrick',
+    lastName: 'Hannigan',
     img: 'https://static-hive-images-ticketlabsinc1.netdna-ssl.com/facebook/c_fill,g_faces,h_150,q_30,w_150/502428349.jpg'
   }
 }
@@ -91,8 +91,8 @@ HIVE_SDK(
   user: {
     id: 1,  // the user's id in Hive, useful for identifying users if saved within your application
     email: 'patrick@hive.co',
-    first_name: 'Patrick',
-    last_name: 'Hannigan',
+    firstName: 'Patrick',
+    lastName: 'Hannigan',
     img: 'https://static-hive-images-ticketlabsinc1.netdna-ssl.com/facebook/c_fill,g_faces,h_150,q_30,w_150/502428349.jpg'
   }
 }
@@ -116,9 +116,11 @@ HIVE_SDK(
   'emailSignup',
   {
     email: 'patrick@hive.co',
-    firstName: 'Patrick',
-    lastName: 'Hannigan',
-    location: 'Toronto, Ontario, Canada'
+    firstName: 'Patrick',  // optional
+    lastName: 'Hannigan',  // optional
+    birthday: '01/25/1985',  // optional, MM/DD/YYYY formatted
+    location: 'Los Angeles, California, USA',  // optional
+    zipCode: '90210',  // optional
   },
   function(data){  // Success Callback
     // data.user contains info about the currently auth'ed user
@@ -138,8 +140,8 @@ HIVE_SDK(
   user: {
     id: 1,  // the user's id in Hive, useful for identifying users if saved within your application
     email: 'patrick@hive.co',
-    first_name: 'Patrick',
-    last_name: 'Hannigan',
+    firstName: 'Patrick',
+    lastName: 'Hannigan',
     img: 'https://static-hive-images-ticketlabsinc1.netdna-ssl.com/facebook/c_fill,g_faces,h_150,q_30,w_150/502428349.jpg'
   }
 }
