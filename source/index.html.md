@@ -119,8 +119,12 @@ HIVE_SDK(
     firstName: 'Patrick',  // optional
     lastName: 'Hannigan',  // optional
     birthday: '01/25/1985',  // optional, MM/DD/YYYY formatted
-    location: 'Los Angeles, California, USA',  // optional
-    zipCode: '90210',  // optional
+    location: 'Kitchener, Ontario, Canada',  // optional
+    zipCode: 'N2H 3X7',  // optional
+    country: 'Canada',  // optional
+    city: 'Kitchener',  // optional
+    state: 'Ontario',  // optional
+    mailingAddress: '283 Duke St West, Unit 304',  // optional
   },
   function(data){  // Success Callback
     // data.user contains info about the currently auth'ed user
