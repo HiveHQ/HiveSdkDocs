@@ -170,7 +170,7 @@ HIVE_SDK(
   'addToSegment',
   'VIP Contacts Segment',  // any segment name you choose
   function(){},  // Success Callback
-  function(data){}  // Error Callback
+  function(data){  // Error Callback
     // data contains error information
     console.log(data)
   }
