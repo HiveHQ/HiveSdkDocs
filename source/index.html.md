@@ -46,7 +46,6 @@ HIVE_SDK('init', YOUR_BRAND_HIVE_ID, function(data){  // Initialization success 
     email: 'patrick@hive.co',
     firstName: 'Patrick',
     lastName: 'Hannigan',
-    img: 'https://static-hive-images-ticketlabsinc1.netdna-ssl.com/facebook/c_fill,g_faces,h_150,q_30,w_150/502428349.jpg'
   }
 }
 ```
@@ -93,7 +92,6 @@ HIVE_SDK(
     email: 'patrick@hive.co',
     firstName: 'Patrick',
     lastName: 'Hannigan',
-    img: 'https://static-hive-images-ticketlabsinc1.netdna-ssl.com/facebook/c_fill,g_faces,h_150,q_30,w_150/502428349.jpg'
   }
 }
 ```
@@ -146,7 +144,6 @@ HIVE_SDK(
     email: 'patrick@hive.co',
     firstName: 'Patrick',
     lastName: 'Hannigan',
-    img: 'https://static-hive-images-ticketlabsinc1.netdna-ssl.com/facebook/c_fill,g_faces,h_150,q_30,w_150/502428349.jpg'
   }
 }
 ```
