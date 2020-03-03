@@ -64,47 +64,6 @@ The callback argument in the <code>init</code> call will be executed once the SD
 
 Making a call to any of the Hive SDK's "signup" events will take care of authenticating the user and adding them to your brand's contact list in Hive. After a user is authenticated, any calls to the SDK's <code>init</code> event will pass that user's data into the init success callback.
 
-## Add via Facebook Connect
-
-> To launch the FB signup flow, call the following code immediately following a user interacting with your page (i.e. clicking a link, button, or other element):
-
-```javascript
-HIVE_SDK(
-  'fbSignup',
-  function(data){  // Success Callback
-    // data.user contains info about the currently auth'ed user
-    console.log(data)
-  },
-  function(data){  // Error Callback
-    // data contains error information
-    console.log(data)
-  }
-);
-
-```
-
-> If the above call is successful, it will in turn call the 'success' callback with the following JSON:
-
-```js
-{
-  user: {
-    id: 1,  // the user's id in Hive, useful for identifying users if saved within your application
-    email: 'patrick@hive.co',
-    firstName: 'Patrick',
-    lastName: 'Hannigan',
-  }
-}
-```
-
-This call will prompt the user to connect up via Facebook, and then add the user to your contact list in Hive.
-
-After the signup is successful, the 'success' callback will be called with information about the user. If something goes wrong, the 'error' callback function will be called with details regarding what went wrong.
-
-<aside class='notice'>
-  You should only call <code>fbSignup</code> immediately following a user interacting with your page (i.e. clicking a link, button, or other element). This will help to avoid browsers mistaking Facebook's login dialog for a popup that would otherwise be blocked.
-</aside>
-
-
 ## Add via Email Address
 
 > To add a user via an email address, call the following code:
