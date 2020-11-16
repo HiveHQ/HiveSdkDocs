@@ -117,6 +117,61 @@ After the signup is successful, the 'success' callback will be called with infor
   In some rare cases, users signing up with an email address already associated with a Hive admin account will be required to log in using their Hive password. We'll handle redirecting those users to their Hive login page, making sure they're authenticated, and then redirect them back to your website.
 </aside>
 
+## Add via Phone Numbber
+
+> To add a user via a phone number, call the following code:
+
+```javascript
+HIVE_SDK(
+  'phoneNumberSignup',
+  {
+    phoneNumber: '+15198864500',  // ideally with a country code, i.e. +1 in this example
+    didSmsOptIn: true,  // optional
+
+    firstName: 'Patrick',  // optional
+    lastName: 'Hannigan',  // optional
+
+    birthday: '01/25/1985',  // optional, MM/DD/YYYY formatted
+    location: 'Kitchener, Ontario, Canada',  // optional
+    zipCode: 'N2H 3X7',  // optional
+    country: 'Canada',  // optional
+    city: 'Kitchener',  // optional
+    state: 'Ontario',  // optional
+    mailingAddress: '283 Duke St West, Unit 304',  // optional
+  },
+  function(data){  // Success Callback
+    // data.user contains info about the currently auth'ed user
+    console.log(data)
+  },
+  function(data){  // Error Callback
+    // data contains error information
+    console.log(data)
+  }
+);
+```
+
+> The above call will in turn call the 'success' callback with the following JSON:
+
+```js
+{
+  user: {
+    id: 1,  // the user's id in Hive, useful for identifying users if saved within your application
+    firstName: 'Patrick',
+    lastName: 'Hannigan',
+  }
+}
+```
+
+This call will take the provided user data, and use it to authenticate the current user and add them to your brand's contact list in Hive.
+
+For ensuring that a user is reachable via their Phone Number, it is recommended to also ask for or enforce a country code whenever possible. In cases where Hive cannot resolve a country from a number, a default of `+1` (United States/Canada) will be assumed for the country code.
+
+For legal purposes, be sure to collect the <code>didSmsOptIn</code> intent from the user as this will decide whether or not you will be able to send SMS to them. If this flag is passed in as <code>false</code>, or if this information is not collected at all, the user will still be imported into your Hive brand but no SMS messages can be targeted at them.
+
+The <code>phoneNumber</code> field is the only required field, although passing along as much data as possible is recommended. For instance, including <code>firstName</code> will help to generate a gender for your contacts in Hive. <code>location</code> should be a string with as much location granularity as possible (we'll take care of geocoding, etc. on our own).
+
+After the signup is successful, the 'success' callback will be called with information about the user. If something goes wrong, the 'error' callback function will be called with details regarding what went wrong.
+
 # Add Contact to Segment
 
 After a user has been authenticated (either returned in the response of an <code>init</code> call, or by a subsequent <code>emailSignup</code> or <code>fbSignup</code> call), you can add them to a segment within Hive.
