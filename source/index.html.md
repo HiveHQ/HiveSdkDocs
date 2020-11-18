@@ -164,9 +164,9 @@ HIVE_SDK(
 
 This call will take the provided user data, and use it to authenticate the current user and add them to your brand's contact list in Hive.
 
-For ensuring that a user is reachable via their Phone Number, it is recommended to also ask for or enforce a country code whenever possible. In cases where Hive cannot resolve a country from a number, a default of `+1` (United States/Canada) will be assumed for the country code.
+To ensure that phone numbers are properly saved, it is recommended to provide phone numbers in E.164 or RFC3966 format. In cases where Hive cannot resolve a poorly formatted phone number, a default country code of `+1` (United States/Canada) will be assumed.
 
-For legal purposes, be sure to collect the <code>didSmsOptIn</code> intent from the user as this will decide whether or not you will be able to send SMS to them. If this flag is passed in as <code>false</code>, or if this information is not collected at all, the user will still be imported into your Hive brand but no SMS messages can be targeted at them.
+To ensure you can legally send SMS messages to your contacts via Hive, you must also collect explicit opt-in consent from each user that complies with TCPA. If users have provided you with explicit consent to receive SMS messages, you should pass a value of <code>true</code> for the <code>didSmsOptIn</code> parameter. If this flag is passed in as <code>false</code> (or if this information is not collected at all) the user will still be imported into your Hive account but no SMS messages can be targeted at them.
 
 The <code>phoneNumber</code> field is the only required field, although passing along as much data as possible is recommended. For instance, including <code>firstName</code> will help to generate a gender for your contacts in Hive. <code>location</code> should be a string with as much location granularity as possible (we'll take care of geocoding, etc. on our own).
 
