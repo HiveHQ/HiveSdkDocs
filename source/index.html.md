@@ -50,7 +50,7 @@ HIVE_SDK('init', YOUR_BRAND_HIVE_ID, function(data){  // Initialization success 
 }
 ```
 
-You must initialize the Hive SDK on your website before calling any of the SDK's events (such as <code>emailSignup</code>). Events fired before a call to <code>init</code> will be discarded, while any events fired afterwards (even during initialization) will be handled as soon as initialization is complete.
+You must initialize the Hive SDK on your website (by making a call to the <code>init</code> command) before calling any of the SDK's other commands (such as <code>emailSignup</code>). Commands made before an <code>init</code> command is made will be discarded, while any commands made afterwards (even during initialization) will be handled as soon as initialization is complete.
 
 <aside class='notice'>
   Don't forget to replace <code>YOUR_BRAND_HIVE_ID</code> with your brand's id in Hive. For help finding your brand's id, please email <a href="mailto:hello@hive.co">hello@hive.co</a>.
@@ -58,11 +58,11 @@ You must initialize the Hive SDK on your website before calling any of the SDK's
 
 Make sure that you're initializing the SDK on a domain (or subdomain) that's been whitelisted for your brand id. If you are not sure that your domain has been whitelisted for your brand, please reach out to your account manager.
 
-The callback argument in the <code>init</code> call will be executed once the SDK sucessfully initializes. If the current user is "authenticated" with Hive and your brand, the callback will be passed an object containing a <code>user</code> field including information about the currently "authenticated" user.
+The callback argument in the <code>init</code> command will be executed once the SDK sucessfully initializes. If the current user is "authenticated" with Hive and your brand, the callback will be passed an object containing a <code>user</code> field including information about the currently "authenticated" user.
 
 # Add User to Contact List
 
-Making a call to any of the Hive SDK's "signup" events will take care of "authenticating" the user and adding them to your brand's contact list in Hive. After a user is "authenticated", any calls to the SDK's <code>init</code> event will pass that user's data into the init success callback.
+Making a call to any of the Hive SDK's "signup" command will take care of "authenticating" the user and adding them to your brand's contact list in Hive. After a user is "authenticated", any calls to the SDK's <code>init</code> command will pass that user's data into the init 'success' callback.
 
 ## Add via Email Address
 
@@ -100,7 +100,7 @@ HIVE_SDK(
 );
 ```
 
-> The above call will in turn call the 'success' callback with the following JSON:
+> The above code will in turn call the 'success' callback with the following JSON:
 
 ```js
 {
@@ -113,13 +113,13 @@ HIVE_SDK(
 }
 ```
 
-This call will take the provided user data, and use it to "authenticate" the current user and add them to your brand's contact list in Hive.
+This command will take the provided user data, and use it to "authenticate" the current user and add them to your brand's contact list in Hive.
 
 The <code>email</code> field is the only required field, although passing along as much data as possible is recommended. For instance, including <code>firstName</code> will help to generate a gender for your contacts in Hive. <code>location</code> should be a string with as much location granularity as possible (we'll take care of geocoding, etc. on our own).
 
-If you're including a user's phone number, it is recommended to provide phone numbers in E.164 or RFC3966 format to ensure that phone numbers are properly saved, . In cases where Hive cannot resolve a poorly formatted phone number, a default country code of `+1` (United States/Canada) will be assumed.
+If you're including a user's phone number, provide it in E.164 or RFC3966 format to ensure that it is properly saved. In cases where Hive cannot resolve a poorly formatted phone number, a default country code of `+1` (United States/Canada) will be assumed. Users with invalid phone numbers will not be saved into Hive.
 
-To ensure you can legally send SMS messages to your contacts via Hive, you must also collect explicit opt-in consent from each user that complies with TCPA. If users have provided you with explicit consent to receive SMS messages, you should pass a value of <code>true</code> for the <code>didSmsOptIn</code> parameter. If this flag is passed in as <code>false</code> (or if this information is not collected at all) the user will still be imported into your Hive account but no SMS messages can be targeted at them.
+To ensure you can legally send SMS messages to your contacts via Hive, you must also collect explicit opt-in consent from each user that complies with TCPA. If users have provided you with explicit consent to receive SMS messages, you should pass a value of <code>true</code> for the <code>didSmsOptIn</code> parameter. If this parameter is passed in as <code>false</code> (or if this parameter is not provided at all), then the user will still be imported into your Hive account but no SMS messages can be sent to them.
 
 After the signup is successful, the 'success' callback will be called with information about the user. If something goes wrong, the 'error' callback function will be called with details regarding what went wrong.
 
@@ -137,9 +137,6 @@ HIVE_SDK(
   {
     phoneNumber: '+15198864500',  // ideally with a country code, i.e. +1 in this example
     didSmsOptIn: true,  // optional
-
-    firstName: 'Patrick',  // optional
-    lastName: 'Hannigan',  // optional
 
     firstName: 'Patrick',  // optional
     lastName: 'Hannigan',  // optional
@@ -163,7 +160,7 @@ HIVE_SDK(
 );
 ```
 
-> The above call will in turn call the 'success' callback with the following JSON:
+> The above code will in turn call the 'success' callback with the following JSON:
 
 ```js
 {
@@ -175,11 +172,11 @@ HIVE_SDK(
 }
 ```
 
-This call will take the provided user data, and use it to "authenticate" the current user and add them to your brand's contact list in Hive.
+This command will take the provided user data, and use it to "authenticate" the current user and add them to your brand's contact list in Hive.
 
-To ensure that phone numbers are properly saved, it is recommended to provide phone numbers in E.164 or RFC3966 format. In cases where Hive cannot resolve a poorly formatted phone number, a default country code of `+1` (United States/Canada) will be assumed.
+To ensure that phone numbers are properly saved, provide phone numbers in E.164 or RFC3966 format. In cases where Hive cannot resolve a poorly formatted phone number, a default country code of `+1` (United States/Canada) will be assumed. Users with invalid phone numbers will not be saved into Hive.
 
-To ensure you can legally send SMS messages to your contacts via Hive, you must also collect explicit opt-in consent from each user that complies with TCPA. If users have provided you with explicit consent to receive SMS messages, you should pass a value of <code>true</code> for the <code>didSmsOptIn</code> parameter. If this flag is passed in as <code>false</code> (or if this information is not collected at all) the user will still be imported into your Hive account but no SMS messages can be targeted at them.
+To ensure you can legally send SMS messages to your contacts via Hive, you must also collect explicit opt-in consent from each user that complies with TCPA. If users have provided you with explicit consent to receive SMS messages, you should pass a value of <code>true</code> for the <code>didSmsOptIn</code> parameter. If this parameter is passed in as <code>false</code> (or if this parameter is not provided), then the user will still be imported into your Hive account but no SMS messages can be sent to them.
 
 The <code>phoneNumber</code> field is the only required field, although passing along as much data as possible is recommended. For instance, including <code>firstName</code> will help to generate a gender for your contacts in Hive. <code>location</code> should be a string with as much location granularity as possible (we'll take care of geocoding, etc. on our own).
 
@@ -204,10 +201,10 @@ HIVE_SDK(
 
 ```
 
-This call will add the currently "authenticated" user to a static segment in Hive that matches the name you provide. If a segment does not exist for the name you provided, one will be created.
+This command will add the currently "authenticated" user to a static segment in Hive that matches the name you provide. If a segment does not exist for the name you provided, one will be created.
 
 <aside class='notice'>
-  Users will not be added to a segment until they're "authenticated" via the SDK. In practice, this means that an <code>addToSegment</code> call will be processed immediately for users who have been "autenticated" by a previous <code>emailSignup</code> or <code>phoneNumberSignup</code> call. For users who weren't "authenticated" before a <code>addToSegment</code> call is made, the <code>addToSegment</code> call will be "buffered" by the SDK and processed immediately following a future call to <code>emailSignup</code> or <code>phoneNumberSignup</code> (which can potentially happen on a future separete pageview or session entirely).
+  Users will not be added to a segment until they're "authenticated" via the SDK. In practice, this means that an <code>addToSegment</code> command will be processed immediately for users who have been "autenticated" by a previous <code>emailSignup</code> or <code>phoneNumberSignup</code> command. For users who weren't "authenticated" before a <code>addToSegment</code> command is made, the <code>addToSegment</code> command will be "buffered" by the SDK and processed immediately following a future <code>emailSignup</code> or <code>phoneNumberSignup</code> command (which can potentially happen in the future on a separate pageview or session entirely).
 </aside>
 
 
@@ -215,7 +212,7 @@ This call will add the currently "authenticated" user to a static segment in Hiv
 
 ## Save a Newly-Created Ticketing Order
 
-> Call the following code to __create__ an order, with correct order, event, and venue data:
+> Call the following code to __create__ an order:
 
 ```javascript
 HIVE_SDK(
@@ -260,13 +257,13 @@ All dates (ie <code>event.start_time</code> etc.) should be provided as strings 
 Make sure the values for <code>id</code> and <code>event.id</code> are unique per order/event and match what you'd save into your database. You'll use the same order <code>id</code> when updating this order in the future (see the update command below). We use <code>event.id</code>'s to keep track of orders made by different people to the same event.
 
 Ensure the order's <code>status</code> is correctly provided. Currently, there are two values for <code>status</code> that are supported:
-  - <code>started</code> Use this when a user has created an order but not yet completed it. We'll store the "in progress" order inside Hive.co and you can use this data to e.g. send emails to users who haven't completed their orders.
-  - <code>completed</code> Use this when a user has fully completed an order (payment, etc).
+  - <code>started</code> Use this when a user has started an order but not yet completed it. We'll store the "in progress" order inside Hive and you can use this data to target these users, e.g. send them "abandoned cart" reminder emails.
+  - <code>completed</code> Use this when a user has fully completed an order, e.g. after payment is confirmed.
 
-When a user completes an order previously created in Hive and marked as <code>started</code>, use the update call below to update its <code>status</code> and other properties
+After a user completes an order previously marked as <code>started</code> (and saved into Hive as such), use the <code>ticketingOrder.update</code> command below to update its <code>status</code> and other properties
 
 <aside class='notice'>
-  Orders will not be saved until the user who created the order is "authenticated" via the SDK. In practice, this means that a <code>ticketingOrder.create</code> call will be processed immediately for users who have been "autenticated" by a previous <code>emailSignup</code> or <code>phoneNumberSignup</code> call. For users who weren't "authenticated" before a <code>ticketingOrder.create</code> call is made, the <code>ticketingOrder.create</code> call will be "buffered" by the SDK and processed immediately following a future call to <code>emailSignup</code> or <code>phoneNumberSignup</code> (which can potentially happen on a future separete pageview or session entirely).
+  Orders will not be saved until the user who created the order is "authenticated" via the SDK. In practice, this means that a <code>ticketingOrder.create</code> command will be processed immediately for users who have been "autenticated" by a previous <code>emailSignup</code> or <code>phoneNumberSignup</code> command. For users who weren't "authenticated" before a <code>ticketingOrder.create</code> command is made, the <code>ticketingOrder.create</code> command will be "buffered" by the SDK and processed immediately following a future <code>emailSignup</code> or <code>phoneNumberSignup</code> command (which can potentially happen in the future on a separate pageview or session entirely).
 </aside>
 
 ## Update an Existing Ticketing Order
@@ -292,17 +289,17 @@ HIVE_SDK(
 );
 ```
 
-Orders saved in Hive.co should be kept up-to-date throughout a user's purchasing session (e.g. as they add & remove items from their cart and eventually checkout and complete the order).
+Orders saved in Hive should be kept up-to-date throughout a user's browsing/checkout/purchasing session (e.g. as they add & remove items from their cart and eventually checkout and complete the order).
 
-All fields are required. If a field isn't provided, we'll throw an error message.
+The fields <code>id</code> and <code>status</code> are required. If they aren't provided, we'll throw an error message.
 
-Make sure the value for the order's <code>id</code> matches what you used when making the previous create command. If you provide an order <code>id</code> that doesn't exist yet, we'll discard the command.
+Make sure the value for the order's <code>id</code> matches what you used when making the previous <code>ticketingOrder.create</code> command. If you provide an order <code>id</code> that doesn't exist yet, we'll discard the <code>ticketingOrder.update</code> command.
 
-Ensure the order's <code>status</code> is correctly provided (see note above).
+Ensure the value for the order's <code>status</code> is one of the two valid options (<code>started</code> or <code>completed</code>, see above).
 
 Always pass in the most up-to-date value for <code>total_paid</code> as a user's order changes over time.
 
 
 <aside class='notice'>
-  Updates to orders will not be saved until the user who created the order is "authenticated" via the SDK. In practice, this means that a <code>ticketingOrder.update</code> call will be processed immediately for users who have been "autenticated" by a previous <code>emailSignup</code> or <code>phoneNumberSignup</code> call. For users who weren't "authenticated" before a <code>ticketingOrder.update</code> call is made, the <code>ticketingOrder.update</code> call will be "buffered" by the SDK and processed immediately following a future call to <code>emailSignup</code> or <code>phoneNumberSignup</code> (which can potentially happen on a future separete pageview or session entirely).
+  Updates to orders will not be saved until the user who created the order is "authenticated" via the SDK. In practice, this means that a <code>ticketingOrder.update</code> command will be processed immediately for users who have been "autenticated" by a previous <code>emailSignup</code> or <code>phoneNumberSignup</code> command. For users who weren't "authenticated" before a <code>ticketingOrder.update</code> command is made, the <code>ticketingOrder.update</code> command will be "buffered" by the SDK and processed immediately following a <code>emailSignup</code> or <code>phoneNumberSignup</code> command (which can potentially happen in the future on a separate pageview or session entirely).
 </aside>
