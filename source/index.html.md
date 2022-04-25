@@ -231,6 +231,9 @@ HIVE_SDK(
       'end_time': '2019-03-17T18:00:00-04:00',  // when does the event end? in ISO 8601 format
       'url': 'http://example.com/events/1234-st-paddys-concert/',  // a public url to buy tickets for this event
       'image_url': 'https://via.placeholder.com/500x100',  // a banner image or other public image for this event
+
+      'artist_name': 'Pat Flannigan',  // optional, name of artist headlining this event
+      'genre_name': 'Hip Hop',  // optional, genre if this is a music event
     },
 
     'venue': {
