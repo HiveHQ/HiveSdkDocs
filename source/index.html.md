@@ -232,8 +232,9 @@ HIVE_SDK(
       'url': 'http://example.com/events/1234-st-paddys-concert/',  // a public url to buy tickets for this event
       'image_url': 'https://via.placeholder.com/500x100',  // a banner image or other public image for this event
 
-      'artist_name': 'Pat Flannigan',  // optional, name of artist headlining this event
-      'genre_name': 'Hip Hop',  // optional, genre if this is a music event
+      'artist_names': 'Pat Flannigan, Andrew Sayer',  // optional, comma separated values of the names of artist headlining this event,
+      'genre_names': 'Hip Hop, Electronic',  // optional, comma separated values of genres if this is a music event
+      'tag_names': 'Festival, Summer', // optional, comma separated values of the tags of this event
     },
 
     'venue': {
