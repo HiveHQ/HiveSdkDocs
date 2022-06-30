@@ -232,8 +232,9 @@ HIVE_SDK(
       'url': 'http://example.com/events/1234-st-paddys-concert/',  // a public url to buy tickets for this event
       'image_url': 'https://via.placeholder.com/500x100',  // a banner image or other public image for this event
 
-      'artist_name': 'Pat Flannigan',  // optional, name of artist headlining this event
-      'genre_name': 'Hip Hop',  // optional, genre if this is a music event
+      'artist_names': 'Pat Flannigan, Andrew Sayer',  // optional, comma separated values
+      'genre_names': 'Hip Hop, Electronic',  // optional, comma separated values
+      'tag_names': 'Festival, Summer', // optional, comma separated values
     },
 
     'venue': {
@@ -253,7 +254,7 @@ HIVE_SDK(
 );
 ```
 
-All fields are required. If a field isn't provided, we'll throw an error message.\
+All fields that aren't marked "optional" are required. If a field isn't provided, we'll throw an error message.\
 
 All dates (ie <code>event.start_time</code> etc.) should be provided as strings in ISO 8601 format. If you dont specify a timezone offset in your date, please make sure the time you're passing is in UTC.
 
@@ -268,6 +269,8 @@ After a user completes an order previously marked as <code>started</code> (and s
 <aside class='notice'>
   Orders will not be saved until the user who created the order is "authenticated" via the SDK. In practice, this means that a <code>ticketingOrder.create</code> command will be processed immediately for users who have been "autenticated" by a previous <code>emailSignup</code> or <code>phoneNumberSignup</code> command. For users who weren't "authenticated" before a <code>ticketingOrder.create</code> command is made, the <code>ticketingOrder.create</code> command will be "buffered" by the SDK and processed immediately following a future <code>emailSignup</code> or <code>phoneNumberSignup</code> command (which can potentially happen in the future on a separate pageview or session entirely).
 </aside>
+
+If you provide a value for an event's <code>artist_names</code>, <code>genre_names</code> and <code>tag_names</code>, this will allow users to filter for orders saved in Hive by their event's artists, event genres, and tags and build customer segments and target email/SMS off of these fields.
 
 ## Update an Existing Ticketing Order
 
