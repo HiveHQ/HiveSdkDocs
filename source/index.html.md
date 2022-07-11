@@ -266,11 +266,11 @@ Ensure the order's <code>status</code> is correctly provided. Currently, there a
 
 After a user completes an order previously marked as <code>started</code> (and saved into Hive as such), use the <code>ticketingOrder.update</code> command below to update its <code>status</code> and other properties
 
+If you provide a value for an event's <code>artist_names</code>, <code>genre_names</code> and <code>tag_names</code>, this will allow users to filter for orders saved in Hive by their event's artists, event genres, and tags and build customer segments and target email/SMS off of these fields.
+
 <aside class='notice'>
   Orders will not be saved until the user who created the order is "authenticated" via the SDK. In practice, this means that a <code>ticketingOrder.create</code> command will be processed immediately for users who have been "autenticated" by a previous <code>emailSignup</code> or <code>phoneNumberSignup</code> command. For users who weren't "authenticated" before a <code>ticketingOrder.create</code> command is made, the <code>ticketingOrder.create</code> command will be "buffered" by the SDK and processed immediately following a future <code>emailSignup</code> or <code>phoneNumberSignup</code> command (which can potentially happen in the future on a separate pageview or session entirely).
 </aside>
-
-If you provide a value for an event's <code>artist_names</code>, <code>genre_names</code> and <code>tag_names</code>, this will allow users to filter for orders saved in Hive by their event's artists, event genres, and tags and build customer segments and target email/SMS off of these fields.
 
 ## Update an Existing Ticketing Order
 
