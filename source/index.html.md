@@ -226,15 +226,15 @@ HIVE_SDK(
     'event': {
       'id': 'unique_event_id_1234',  // unique id for this event as saved into your own database
       'name': 'St. Paddy\'s Day Outdoor Concert',
-      'description': 'There will be live entertainment and lots of food! Parking is available across the street.',
+      'description': 'There will be live entertainment and lots of food! Parking is available across the street.',  // (optional)
       'start_time': '2019-03-17T10:00:00-04:00',  // when does the event begin? in ISO 8601 format
       'end_time': '2019-03-17T18:00:00-04:00',  // when does the event end? in ISO 8601 format
       'url': 'http://example.com/events/1234-st-paddys-concert/',  // a public url to buy tickets for this event
-      'image_url': 'https://via.placeholder.com/500x100',  // a banner image or other public image for this event
+      'image_url': 'https://via.placeholder.com/500x100',  // (optional) a banner image or other public image for this event
 
-      'artist_names': 'Pat Flannigan, Andrew Sayer',  // optional, comma separated values
-      'genre_names': 'Hip Hop, Electronic',  // optional, comma separated values
-      'tag_names': 'Festival, Summer', // optional, comma separated values
+      'artist_names': 'Pat Flannigan, Andrew Sayer',  // (optional) comma separated values
+      'genre_names': 'Hip Hop, Electronic',  // (optional) comma separated values
+      'tag_names': 'Festival, Summer', // (optional) comma separated values
     },
 
     'venue': {
