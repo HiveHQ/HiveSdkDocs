@@ -1,7 +1,14 @@
 # Hive SDK Docs using [Slate](https://lord.github.io/slate/#introduction)
 
-Getting Started with Slate
-------------------------------
+## Getting Started
+
+### Docker (recommanded)
+
+```sh
+docker compose up -d
+```
+
+### Local
 
 ```sh
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
@@ -20,10 +27,13 @@ You can now see the docs at http://localhost:4567. Whoa! That was fast!
 
 Edit `index.html.md` to modify docs
 
+## Deployment
+
 Push changes to remote then ssh into blog server. Pull the changes and run:
 
 ```sh
 cd HiveSdkDocs
 bundle exec middleman build --clean
 ```
+
 That's it, nginx will serve the updated docs.
