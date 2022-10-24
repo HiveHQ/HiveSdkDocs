@@ -309,3 +309,28 @@ Always pass in the most up-to-date value for <code>total_paid</code> as a user's
 <aside class='notice'>
   Updates to orders will not be saved until the user who created the order is "authenticated" via the SDK. In practice, this means that a <code>ticketingOrder.update</code> command will be processed immediately for users who have been "autenticated" by a previous <code>emailSignup</code> or <code>phoneNumberSignup</code> command. For users who weren't "authenticated" before a <code>ticketingOrder.update</code> command is made, the <code>ticketingOrder.update</code> command will be "buffered" by the SDK and processed immediately following a <code>emailSignup</code> or <code>phoneNumberSignup</code> command (which can potentially happen in the future on a separate pageview or session entirely).
 </aside>
+
+# Add Custom User Properties
+
+This command will add and update custom user properties for the current user. 
+
+```javascript
+HIVE_SDK(
+  'customUserProperties',
+  'update',
+  {
+    // 'Property Name': 'Property Value'
+    'Favorite Color': 'blue',
+    'Import ID': 'ABCD123'
+  },
+  function() { 
+    // success calback, called after data is saved
+  } 
+  function(data) {
+    // failure callback, called if something goes wrong
+    // error information is provided in the "data" param
+  }
+)
+```
+
+The third argument is an object of the custom properties name as keys with their values as the object values. This call will created any non-existing properties and update the value of any existing one.
