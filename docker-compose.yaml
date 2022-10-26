@@ -1,0 +1,8 @@
+services:
+  docs:
+    image: slatedocs/slate
+    ports:
+      - 4567:4567
+    volumes:
+      - ./source:/srv/slate/source
+    command: serve
