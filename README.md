@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-### Docker (recommanded)
+### Docker (recommended)
 
 ```sh
 docker compose up -d
