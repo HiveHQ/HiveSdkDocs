@@ -309,3 +309,34 @@ Always pass in the most up-to-date value for <code>total_paid</code> as a user's
 <aside class='notice'>
   Updates to orders will not be saved until the user who created the order is "authenticated" via the SDK. In practice, this means that a <code>ticketingOrder.update</code> command will be processed immediately for users who have been "autenticated" by a previous <code>emailSignup</code> or <code>phoneNumberSignup</code> command. For users who weren't "authenticated" before a <code>ticketingOrder.update</code> command is made, the <code>ticketingOrder.update</code> command will be "buffered" by the SDK and processed immediately following a <code>emailSignup</code> or <code>phoneNumberSignup</code> command (which can potentially happen in the future on a separate pageview or session entirely).
 </aside>
+
+# Set Custom User Properties
+
+This command will set custom user properties on the currently "authenticated" user. Any custom user properties that did not exist before will get created and any existing custom user properties that do exist will be updated.
+
+> Use the following command to set custom user properties on the authenticated user.
+
+```javascript
+HIVE_SDK(
+  'customUserProperties',
+  'update',
+  {
+    // 'Property Name': 'Property Value'
+    'Favorite Color': 'blue',
+    'Import ID': 'ABCD123'
+  },
+  function() { 
+    // success calback, called after data is saved
+  } 
+  function(data) {
+    // failure callback, called if something goes wrong
+    // error information is provided in the "data" param
+  }
+)
+```
+
+Note that the values for each custom user property must be a string. Any value passed in that is not a string will be saved as a string.
+
+<aside class='notice'>
+  Users will not be have their custom user properties set or updated until they're "authenticated" via the SDK. In practice, this means that a <code>customUserProperties.update</code> command will be processed immediately for users who have been "autenticated" by a previous <code>emailSignup</code> or <code>phoneNumberSignup</code> command. For users who weren't "authenticated" before a <code>customUserProperties.update</code> command is made, the <code>customUserProperties.update</code> command will be "buffered" by the SDK and processed immediately following a future <code>emailSignup</code> or <code>phoneNumberSignup</code> command (which can potentially happen in the future on a separate pageview or session entirely).
+</aside>
