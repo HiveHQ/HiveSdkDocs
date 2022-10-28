@@ -336,3 +336,7 @@ HIVE_SDK(
 ```
 
 Note that the values for each custom user property must be a string. Any value passed in that is not a string will be saved as a string.
+
+<aside class='notice'>
+  Users will not be have their custom user properties set or updated until they're "authenticated" via the SDK. In practice, this means that a <code>customUserProperties.update</code> command will be processed immediately for users who have been "autenticated" by a previous <code>emailSignup</code> or <code>phoneNumberSignup</code> command. For users who weren't "authenticated" before a <code>customUserProperties.update</code> command is made, the <code>customUserProperties.update</code> command will be "buffered" by the SDK and processed immediately following a future <code>emailSignup</code> or <code>phoneNumberSignup</code> command (which can potentially happen in the future on a separate pageview or session entirely).
+</aside>
