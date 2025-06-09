@@ -31,7 +31,10 @@ Edit `index.html.md` to modify docs
 
 Push changes to remote then ssh into blog server.
 
-Please note that to SSH in, you will need to add your IP address (eg. 1.2.3.4/32 tcp port 22) into the ingress rules for the EC2 instance.
+Please note that to SSH in, you will need to add your IP address (eg. 1.2.3.4/32 tcp port 22) into the ingress rules for the EC2 instance's security group.
+
+Security Group ID and name: sg-98203ffc - launch-wizard-4
+EC2 instance ID and name: i-043f38d4 (blog/sdk docs)
 
 Pull the changes and run:
 
