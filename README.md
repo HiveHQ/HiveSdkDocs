@@ -29,7 +29,11 @@ Edit `index.html.md` to modify docs
 
 ## Deployment
 
-Push changes to remote then ssh into blog server. Pull the changes and run:
+Push changes to remote then ssh into blog server.
+
+Please note that to SSH in, you will need to add your IP address (eg. 1.2.3.4/32 tcp port 22) into the ingress rules for the EC2 instance.
+
+Pull the changes and run:
 
 ```sh
 cd HiveSdkDocs
