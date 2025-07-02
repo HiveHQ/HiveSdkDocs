@@ -68,7 +68,7 @@ The callback argument in the <code>init</code> command will be executed once the
 
 ## 4 - Link the current user to your Brand
 
-Making a call to any of the Hive SDK's "signup" commands will link the current user to this session's SDK events and add them to your Brand's Contact list in Hive. Hive may be able to identify the current user as a known Contact based on previous sessions, but 
+Making a call to any of the Hive SDK's "signup" commands will link the current user to this session's SDK events and add them to your Brand's Contact list in Hive. Hive may be able to identify the current user as a known Contact based on previous sessions, but this is not guaranteed.
 
 <aside class='notice'>
 SDK commands fired after <code>init</code> but before a Contact is linked (via a "signup" command or determined from a previous browsing session) are "buffered", and will not propagate into Hive until the correct Contact is identified. This includes automated commands such as page view tracking. As soon as a Contact is linked, all buffered commands will be "flushed" into Hive and that Contact's interaction history
@@ -77,7 +77,7 @@ SDK commands fired after <code>init</code> but before a Contact is linked (via a
 # Commands - Signup
 
 <aside class='success'>
-Commands in this group will not be buffered, since they link a Contact to the current session
+Commands in this group will not be buffered, since they link a Contact to them
 </aside>
 
 ## Via Email Address
@@ -205,7 +205,7 @@ After the signup is successful, the 'success' callback will be called with infor
 # Commands - Segments
 
 <aside class='info'>
-Commands in this group will be buffered until a Contact is linked to the current session
+Commands in this group will be buffered until a Contact is linked to them
 </aside>
 
 
@@ -231,7 +231,7 @@ This command will add the currently "authenticated" user to a static segment in 
 # Commands - Orders/Purchases
 
 <aside class='info'>
-Commands in this group will be buffered until a Contact is linked to the current session
+Commands in this group will be buffered until a Contact is linked to them
 </aside>
 
 ## Save a Newly-Created Ticketing Order
@@ -330,7 +330,7 @@ Always pass in the most up-to-date value for <code>total_paid</code> as a user's
 # Commands - User Properties 
 
 <aside class='info'>
-Commands in this group will be buffered until a Contact is linked to the current session
+Commands in this group will be buffered until a Contact is linked to them
 </aside>
 
 ## Set Custom User Properties
