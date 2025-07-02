@@ -71,11 +71,14 @@ The callback argument in the <code>init</code> command will be executed once the
 Making a call to any of the Hive SDK's "signup" commands will link the current user to this session's SDK events and add them to your Brand's Contact list in Hive. Hive may be able to identify the current user as a known Contact based on previous sessions, but 
 
 <aside class='notice'>
-SDK commands fired after <code>init</code> but before a Contact is linked (via "signup" or previous session data) are "buffered", and will not propagate into Hive until the correct Contact is identified. This includes automated commands such as page view tracking. As soon as a Contact is linked, all buffered commands will be "flushed" into Hive and that Contact's interaction history
+SDK commands fired after <code>init</code> but before a Contact is linked (via a "signup" command or determined from a previous browsing session) are "buffered", and will not propagate into Hive until the correct Contact is identified. This includes automated commands such as page view tracking. As soon as a Contact is linked, all buffered commands will be "flushed" into Hive and that Contact's interaction history
 </aside>
 
+# Commands - Signup
 
-# Signup Commands
+<aside class='success'>
+Commands in this group will not be buffered, since they link a Contact to the current session
+</aside>
 
 ## Via Email Address
 
@@ -199,7 +202,12 @@ The <code>phoneNumber</code> field is the only required field, although passing 
 
 After the signup is successful, the 'success' callback will be called with information about the user. If something goes wrong, the 'error' callback function will be called with details regarding what went wrong.
 
-# Add Contact to Segment
+# Commands - Segments
+
+<aside class='info'>
+Commands in this group will be buffered until a Contact is linked to the current session
+</aside>
+
 
 ## Add to Static Segment
 
@@ -220,7 +228,11 @@ HIVE_SDK(
 
 This command will add the currently "authenticated" user to a static segment in Hive that matches the name you provide. If a segment does not exist for the name you provided, one will be created.
 
-# Save Ticketing Orders/Purchase Data
+# Commands - Orders/Purchases
+
+<aside class='info'>
+Commands in this group will be buffered until a Contact is linked to the current session
+</aside>
 
 ## Save a Newly-Created Ticketing Order
 
@@ -315,7 +327,13 @@ Ensure the value for the order's <code>status</code> is one of the two valid opt
 
 Always pass in the most up-to-date value for <code>total_paid</code> as a user's order changes over time.
 
-# Set Custom User Properties
+# Commands - User Properties 
+
+<aside class='info'>
+Commands in this group will be buffered until a Contact is linked to the current session
+</aside>
+
+## Set Custom User Properties
 
 This command will set custom user properties on the currently "authenticated" user. Any custom user properties that did not exist before will get created and any existing custom user properties that do exist will be updated.
 
