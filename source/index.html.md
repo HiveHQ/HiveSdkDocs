@@ -40,7 +40,7 @@ You must initialize the Hive SDK on your website (by making a call to the <code>
 ```javascript
 HIVE_SDK("init", YOUR_BRAND_HIVE_ID, function (data) {
   // Initialization success callback
-  // data.user contains info about the currently user (if available)
+  // data.user contains info about the current user (if known)
   console.log(data.user?.email);
 });
 ```
