@@ -23,6 +23,14 @@ The Hive Javascript SDK allows you to update your contact list in Hive from your
 
 Your website's domain **must** be whitelisted in our system (i.e. approved) before you can run the Hive SDK on it. To whitelist a new domain, please email <a href="mailto:hello@hive.co">hello@hive.co</a>. Domains used for production and development sites can be whitelisted at the same time.
 
+<aside class='notice'>
+  If you are loading the SDK inside an iframe on your page, you will need to whitelist the iframe's domain rather than your top-level domain. 
+  <br/>
+  <br/>
+  Loading the SDK inside an iframe instead of the top-level window also blocks our ability to track page views accurately, so doing so should be avoided if possible. Please email <a href="mailto:hello@hive.co">hello@hive.co</a> if you have a unique case we can help you solve.
+</aside>
+
+
 ## 2 - Load the SDK
 
 To load the Hive SDK on your site, add the following script to your HTML:
