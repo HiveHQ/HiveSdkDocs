@@ -21,13 +21,13 @@ The Hive Javascript SDK allows you to update your contact list in Hive from your
 
 ## 1 - Whitelist Your Domain
 
-Your website's domain **must** be whitelisted in our system (i.e. approved) before you can run the Hive SDK on it. To whitelist a new domain, please email <a href="mailto:hello@hive.co">hello@hive.co</a>. Domains used for production and development sites can be whitelisted at the same time.
+Your website's domain **must** be whitelisted in our system (i.e. approved) before you can run the Hive SDK on it. To whitelist a new domain, please email <a href="mailto:support@hive.co">support@hive.co</a>. Domains used for production and development sites can be whitelisted at the same time.
 
 <aside class='notice'>
   If you are loading the SDK inside an iframe on your page, you will need to whitelist the iframe's domain rather than your top-level domain. 
   <br/>
   <br/>
-  Loading the SDK inside an iframe instead of the top-level window also blocks our ability to track page views accurately, so doing so should be avoided if possible. Please email <a href="mailto:hello@hive.co">hello@hive.co</a> if you have a unique case we can help you solve.
+  Loading the SDK inside an iframe instead of the top-level window also blocks our ability to track page views accurately, so doing so should be avoided if possible. Please email <a href="mailto:support@hive.co">support@hive.co</a> if you have a unique case we can help you solve.
 </aside>
 
 
@@ -54,7 +54,7 @@ HIVE_SDK("init", YOUR_BRAND_HIVE_ID, function (data) {
 ```
 
 <aside class='notice'>
-  Don't forget to replace <code>YOUR_BRAND_HIVE_ID</code> with your brand's id in Hive. For help finding your brand's id, please email <a href="mailto:hello@hive.co">hello@hive.co</a>.
+  Don't forget to replace <code>YOUR_BRAND_HIVE_ID</code> with your brand's id in Hive. For help finding your brand's id, please email <a href="mailto:support@hive.co">support@hive.co</a>.
 </aside>
 
 > The above command will call the callback function, containing the current user's information if the current user is already "authenticated" with Hive and your brand:
