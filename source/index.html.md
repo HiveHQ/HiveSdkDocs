@@ -84,7 +84,7 @@ SDK commands fired after <code>init</code> but before a Contact is linked (via a
 
 ## 5 - Confirm your implementation
 
-Interact with Events on your site, and confirm they show in the "interactions" list of your Contact Profile page. Note again that these interactions will be buffered until one of the "signup" commands has been processed. You'll also want to confirm that any Signup/Popup forms or Landing Pages are submitting correctly by checking for them in your interaction history.
+Interact with Events on your site using a test email, and confirm the new "online interactions" show up on the contact's profile page in Hive. You can find this profile page by searching for the test contact on the Contact List page and clicking on the result row.
 
 As an example, here a Contact has viewed an Event page and started (but not completed) an order:
 ![An interaction history in Hive, showing actions tracked through Hives's SDK](images/tracked-events.png)
