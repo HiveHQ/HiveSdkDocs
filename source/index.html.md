@@ -82,6 +82,15 @@ Making a call to any of the Hive SDK's "signup" commands will link the current u
 SDK commands fired after <code>init</code> but before a Contact is linked (via a "signup" command or determined from a previous browsing session) are "buffered", and will not propagate into Hive until the correct Contact is identified. This includes automated commands such as page view tracking. As soon as a Contact is linked, all buffered commands will be "flushed" into Hive and that Contact's interaction history
 </aside>
 
+## 5 - Confirm your implementation
+
+Interact with Events on your site using a test email, and confirm the new "online interactions" show up on the contact's profile page in Hive. You can find this profile page by searching for the test contact on the Contact List page and clicking on the result row.
+
+As an example, here a Contact has viewed an Event page and started (but not completed) an order:
+![An interaction history in Hive, showing actions tracked through Hives's SDK](images/tracked-events.png)
+
+Once you've confirmed the SDK is capturing interactions, you're ready to go live.
+
 # Commands - Signup
 
 <aside class='success'>
