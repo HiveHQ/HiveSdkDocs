@@ -40,6 +40,37 @@ To load the Hive SDK on your site, add the following script to your HTML:
 (function(h,i,v,e,s,d,k){h.HiveSDKObject=s;h[s]=h[s]||function(){(h[s].q=h[s].q||[]).push(arguments)},d=i.createElement(v),k=i.getElementsByTagName(v)[0];d.async=1;d.id=s;d.src=e+'?r='+parseInt(new Date()/60000);k.parentNode.insertBefore(d,k)})(window,document,'script','https://cdn-prod.hive.co/static/js/sdk-loader.js','HIVE_SDK')
 </script>
 ```
+<br/>
+<br/>
+<br/>
+<br/>
+<aside class='notice'>
+  Depending on your host's Content Security Policy (CSP) settings, you may need to update it to  allow scripts and network requests from Hive’s domains and its dependencies. Specifically `https://*.hive.co` and `https://ajax.googleapis.com` need to be whitelisted in order for the SDK to load properly. For example your CSP header might need to look like the following:
+</aside>
+
+```
+  Content-Security-Policy:
+  default-src 'self' data: blob: https:;
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'
+    https://ajax.googleapis.com       # Required for jQuery
+    https://*.hive.co                 # Required for Hive SDK
+    # Your other script sources here
+  script-src-elem 'self' 'unsafe-inline' 'unsafe-eval'
+    https://ajax.googleapis.com
+    https://*.hive.co
+    # Your other script sources here
+  connect-src 'self' https:
+    https://*.hive.co
+    # Your other connect sources here
+  img-src 'self' data: blob: https:;
+  style-src 'self' 'unsafe-inline' https:;
+  font-src 'self' data: https:;
+  base-uri 'self';
+  frame-ancestors 'self';
+  upgrade-insecure-requests;
+```
+
+
 
 ## 3 - Initialize the SDK
 
