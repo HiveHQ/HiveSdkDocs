@@ -51,18 +51,16 @@ To load the Hive SDK on your site, add the following script to your HTML:
 ```
   Content-Security-Policy:
   default-src 'self' data: blob: https:;
-  script-src 'self' https://ajax.googleapis.com https://*.hive.co
+  script-src 'self' 'unsafe-inline' https://ajax.googleapis.com https://*.hive.co
     # Plus any of your other existing script sources.
     ;
-  script-src-elem 'self' https://ajax.googleapis.com https://*.hive.co
+  script-src-elem 'self' 'unsafe-inline' https://ajax.googleapis.com https://*.hive.co
     # Plus any of your other existing script element sources.
     ;
   connect-src 'self' https://*.hive.co
     # Plus any of your other existing API or data endpoints.
     ;
 ```
-
-
 
 ## 3 - Initialize the SDK
 
