@@ -365,6 +365,32 @@ Ensure the value for the order's <code>status</code> is one of the two valid opt
 
 Always pass in the most up-to-date value for <code>total_paid</code> as a user's order changes over time.
 
+## Delete an Order
+
+> To delete a previously created order in Hive, use the following command:
+
+```javascript
+HIVE_SDK(
+  "ticketingOrder",
+  "delete",
+  {
+    id: "unique_order_id_1234", // the same unique id for this order as provided in previous "create/update" commands
+    event: {
+      id: "unique_event_id_1234", // unique id for this event as saved into your own database
+                                  // for some ticketing platforms, this is required to uniquely identify the Order to delete
+    }
+  },
+  function () {
+    // success callback, called after data is deleted
+  },
+  function (data) {
+    // failure callback, called if something goes wrong
+    // error information is provided in the "data" param
+  }
+);
+```
+
+
 # Commands - User Properties 
 
 <aside class='info'>
