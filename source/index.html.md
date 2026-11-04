@@ -75,7 +75,7 @@ HIVE_SDK("init", YOUR_BRAND_HIVE_ID, function (data) {
 ```
 
 <aside class='notice'>
-  Don't forget to replace <code>YOUR_BRAND_HIVE_ID</code> with your brand's id in Hive. For help finding your brand's id, please email <a href="mailto:support@hive.co">support@hive.co</a>.
+  Don't forget to replace <code>YOUR_BRAND_HIVE_ID</code> with your brand's id in Hive. If you integrate through the Hive API, the <a href="https://developers.hive.co/docs/auth#inspecting-a-token">token inspection endpoint</a> returns it as <code>tour_id</code>. Otherwise, please email <a href="mailto:support@hive.co">support@hive.co</a>.
 </aside>
 
 > The above command will call the callback function, containing the current user's information if the current user is already "authenticated" with Hive and your brand:
@@ -111,6 +111,24 @@ As an example, here a Contact has viewed an Event page and started (but not comp
 ![An interaction history in Hive, showing actions tracked through Hives's SDK](images/tracked-events.png)
 
 Once you've confirmed the SDK is capturing interactions, you're ready to go live.
+
+# Commands - Page Views
+
+## Track a Page View
+
+> To record a page view after a client-side navigation, call:
+
+```javascript
+HIVE_SDK("trackPageView");
+```
+
+The SDK records one page view automatically when <code>init</code> completes, so a site that fully reloads on every navigation needs nothing more.
+
+Single-page apps that change the URL without a reload (for example with React Router, Next.js or Vue Router) should call <code>trackPageView</code> after each route change so every page the user visits is recorded. Call <code>init</code> once per page load only: a second <code>init</code> call is ignored and does not record a page view.
+
+<aside class='notice'>
+Page views are buffered until a Contact is linked (see "Link the current user to your Brand" above), then flushed into that Contact's interaction history.
+</aside>
 
 # Commands - Signup
 
@@ -300,7 +318,7 @@ HIVE_SDK(
       tag_names: "Festival, Summer", // (optional) comma separated values
     },
 
-    venue: {
+    venue: { // (optional)
       name: "McCabe's Irish Pub",
       city: "Toronto",
       state: "Ontario",
@@ -332,6 +350,49 @@ After a user completes an order previously marked as <code>started</code> (and s
 
 If you provide a value for an event's <code>artist_names</code>, <code>genre_names</code> and <code>tag_names</code>, this will allow users to filter for orders saved in Hive by their event's artists, event genres, and tags and build customer segments and target email/SMS off of these fields.
 
+## Link an Order to an Existing Event
+
+> If the event is already in Hive, pass <code>source</code> and the event's id:
+
+```javascript
+HIVE_SDK(
+  "ticketingOrder",
+  "create",
+  {
+    id: "unique_order_id_1234",
+    status: "started",
+    total_paid: 50.75,
+    source: "hive_api", // where the event already lives in Hive, see the supported values below
+
+    event: {
+      id: "unique_event_id_1234", // the event's id in that source, e.g. the event_id you sent to the Hive API
+    },
+  },
+  function () {
+    // success callback, called after data is saved
+  },
+  function (data) {
+    // failure callback, called if something goes wrong
+    // error information is provided in the "data" param
+  }
+);
+```
+
+Without <code>source</code>, every order creates its own event in Hive from the details you pass. If that event also comes in through the Hive API or a ticketing integration, Hive ends up with two copies and your orders split between them.
+
+Pass <code>source</code> to attach the order to the event Hive already has. Supported values:
+
+- <code>hive_api</code>: events you created through the <a href="https://developers.hive.co">Hive API</a>
+- <code>see_tickets</code>: events from a See Tickets (Eventim) integration
+- <code>see_tickets_hub</code>: events from a See Tickets Hub integration
+- <code>showclix</code>: events from a Showclix integration
+
+Any other value is rejected.
+
+With a <code>source</code>, <code>event.id</code> is the only event field you need, and it must match the id that source uses (for <code>hive_api</code>, the <code>event_id</code> you sent to <code>POST /events/</code>). The event must already exist in Hive. If it doesn't, the command fails and no event is created.
+
+Pass the same <code>source</code> when you <code>update</code> or <code>delete</code> the order. An order sent with <code>source: "hive_api"</code> and the same <code>id</code> as an order sent through the Hive API is one order in Hive, so you can start it in the browser and complete it from your backend.
+
 ## Update an Existing Ticketing Order
 
 > To update a previously created order in Hive, use the following command:
@@ -344,6 +405,7 @@ HIVE_SDK(
     id: "unique_order_id_1234", // the same unique id for this order as provided in previous "create" commands
     status: "completed", // one of: "started" (order still in progress), "completed" (user has completed order)
     total_paid: 50.75,
+    source: "hive_api", // (optional) only if the order was created with a source; pass the same value
   },
   function () {
     // success callback, called after data is saved
@@ -375,6 +437,7 @@ HIVE_SDK(
   "delete",
   {
     id: "unique_order_id_1234", // the same unique id for this order as provided in previous "create/update" commands
+    source: "hive_api", // (optional) only if the order was created with a source; pass the same value
     event: {
       id: "unique_event_id_1234", // unique id for this event as saved into your own database
                                   // for some ticketing platforms, this is required to uniquely identify the Order to delete
