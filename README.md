@@ -2,30 +2,19 @@
 
 ## Getting Started
 
-### Docker (recommended)
+The docs are in [`source/index.html.md`](source/index.html.md). To preview
+them, run this with Docker or Podman:
 
 ```sh
 docker compose up -d
 ```
 
-### Local
+Then open http://localhost:4567, and reload the page to see your edits. Stop
+it with `docker compose down`.
 
-```sh
-gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-curl -sSL https://get.rvm.io | bash -s stable
-rvm install ruby-2.4.1
-rvm alias create default 2.4.1
-rvm use 2.4.1
-git clone https://github.com/HiveHQ/HiveSdkDocs.git
-cd HiveSdkDocs
-gem install bundler
-bundle install
-bundle exec middleman server
-```
-
-You can now see the docs at http://localhost:4567. Whoa! That was fast!
-
-Edit `index.html.md` to modify docs
+Docker is the only supported way to build the site. The preview and the
+deployed image both use the Ruby and gems in the same pinned
+`slatedocs/slate` image, so there's no Ruby to install.
 
 ## Deployment
 

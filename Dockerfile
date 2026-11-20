@@ -11,8 +11,8 @@
 # The site is plain HTML, CSS and JS, so it's built once on the builder's own
 # platform and the same files go into every platform's image.
 #
-# Same Slate image as docker-compose.yaml. Its Ruby and gems replace this
-# repo's Gemfile.lock, which pins Ruby 2.3 and no longer installs.
+# Same Slate image as docker-compose.yaml. Its Ruby and gems are the only
+# ones the site is built with; this repo has no Gemfile of its own.
 FROM --platform=$BUILDPLATFORM docker.io/slatedocs/slate:v2.13.1@sha256:941a9021d749e6070c901a781322c1fc0be08f224ccbbaccd8a68fe6549e1dd2 AS build
 WORKDIR /srv/slate
 
