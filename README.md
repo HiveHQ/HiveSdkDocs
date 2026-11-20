@@ -29,28 +29,23 @@ Edit `index.html.md` to modify docs
 
 ## Deployment
 
-Push changes to remote then ssh into blog server.
+sdk.hive.co runs in Hive's Kubernetes cluster, from a container image that
+[this repo's workflow](.github/workflows/build-image.yml) builds (see the
+[Dockerfile](Dockerfile)). Deploying takes two PRs and no server access.
 
-Please note that to SSH in, you will need to add your IP address (eg. 1.2.3.4/32 tcp port 22) into the ingress rules for the EC2 instance's security group.
+1. **Open a PR here.** The workflow builds the site and checks the image. To
+   preview your change, run `docker compose up -d`; it uses the same Slate
+   image and config as the build.
+2. **Merge to `master`.** The workflow pushes
+   `400748478358.dkr.ecr.us-east-1.amazonaws.com/sdk-docs-ecr-use1:<commit SHA>`,
+   and the run's summary shows the full tag.
+3. **Open a PR in [HiveHQ/aws-infra](https://github.com/HiveHQ/aws-infra)**
+   that sets `newTag` in
+   [`kubernetes/apps/base/sdk-docs/kustomization.yaml`](https://github.com/HiveHQ/aws-infra/blob/main/kubernetes/apps/base/sdk-docs/kustomization.yaml)
+   to that commit SHA. A Reliability Pod member approves it, and once it
+   merges, Flux rolls out the new pods.
 
-
-Security Group ID and name: sg-98203ffc - launch-wizard-4
-EC2 instance ID and name: i-043f38d4 (blog/sdk docs)
-
-And make sure you add the below to your `~/.ssh/config`:
-
-```
-Host 34.228.87.233
-    PubkeyAcceptedKeyTypes=+ssh-rsa
-    HostKeyAlgorithms=+ssh-rsa
-```
-
-
-Pull the changes and run:
-
-```sh
-cd HiveSdkDocs
-bundle exec middleman build --clean
-```
-
-That's it, nginx will serve the updated docs.
+Merging here on its own doesn't change sdk.hive.co. To roll back, revert the
+aws-infra PR. The aws-infra side, including how to compare an image with the
+live site before you deploy it, is in
+[`kubernetes/apps/base/sdk-docs/README.md`](https://github.com/HiveHQ/aws-infra/blob/main/kubernetes/apps/base/sdk-docs/README.md).
