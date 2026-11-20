@@ -23,6 +23,7 @@ set :fonts_dir, 'fonts'
 activate :syntax
 ready do
   require './lib/multilang.rb'
+  require './lib/monokai_sublime_no_background.rb'
 end
 
 activate :sprockets

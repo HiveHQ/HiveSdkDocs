@@ -1,0 +1,6 @@
+# The image build only needs the site's source and its Middleman config
+*
+!config.rb
+!lib
+!source
+**/.DS_Store

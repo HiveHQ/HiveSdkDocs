@@ -514,6 +514,13 @@ html, body {
 // This is all the stuff that appears in the right half of the page
 
 .content {
+  // middleman-syntax 3.3 wraps each code block in div.highlight. Without
+  // this, the wrapper picks up the `&>div { clear:both }` above and pushes
+  // the text after it below the code. Same fix as upstream Slate.
+  &>div.highlight {
+    clear:none;
+  }
+
   pre, blockquote {
     background-color: $code-bg;
     color: #fff;
