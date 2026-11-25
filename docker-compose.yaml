@@ -1,8 +1,12 @@
+# Live preview at http://localhost:4567. Same Slate image and config as the
+# Dockerfile's build, so the preview matches what's deployed.
 services:
   docs:
-    image: slatedocs/slate
+    image: docker.io/slatedocs/slate:v2.13.1@sha256:941a9021d749e6070c901a781322c1fc0be08f224ccbbaccd8a68fe6549e1dd2
     ports:
       - 4567:4567
     volumes:
       - ./source:/srv/slate/source
+      - ./config.rb:/srv/slate/config.rb:ro
+      - ./lib:/srv/slate/lib:ro
     command: serve
